@@ -39,7 +39,9 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
 			echo $result . "\r\n";
-		}else if ($event['type'] == 'image' && $event['image']['type'] == 'image') {
+		} 
+			
+	if ($event['type'] == 'button' && $event['button']['type'] == 'button') {
 			switch ($typeMessage){ // กำหนดเงื่อนไขการทำงานจาก ประเภทของ message
             case 'text':  // ถ้าเป็นข้อความ
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
