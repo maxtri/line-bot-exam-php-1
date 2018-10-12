@@ -39,9 +39,7 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
 			echo $result . "\r\n";
-		}
-		
-		if ($event['type'] == 'image' && $event['image']['type'] == 'image') {
+		}else if ($event['type'] == 'image' && $event['image']['type'] == 'image') {
 			// Get text sent
 			$text = $event['source']['userId'];
 			// Get replyToken
