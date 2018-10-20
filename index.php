@@ -1,4 +1,7 @@
 <?php
+
+request_one('dbconnect.php');
+
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
