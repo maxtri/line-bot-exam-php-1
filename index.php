@@ -9,47 +9,48 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-if ( sizeof($request_array['events']) > 0 )
-{
+$testdb = 'select * from users where id = 1';
+foreach ($testdb as $ad) {}
 
- foreach ($request_array['events'] as $event)
- {
-  $reply_message = '';
-  $reply_token = $event['replyToken'];
-
-  if ( $event['type'] == 'message' ) 
+  if ( sizeof($request_array['events']) > 0 )
   {
-   if( $event['message']['type'] == 'text' )
+
+   foreach ($request_array['events'] as $event)
    {
-    $testdb = 'select * from users where id = 1';
-    foreach ($testdb as $ad) {}
-    $text = $event['message']['text'];
-    if ($text == 'บอกมา'){
-      $reply_message = 'ระบบ test ของคุณแล้ว';
-    }else if ($text == 'อยากรู้'){
-      $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+    $reply_message = '';
+    $reply_token = $event['replyToken'];
+
+    if ( $event['type'] == 'message' ) 
+    {
+     if( $event['message']['type'] == 'text' )
+     {
+      $text = $event['message']['text'];
+      if ($text == 'บอกมา'){
+        $reply_message = 'ระบบ test ของคุณแล้ว';
+      }else if ($text == 'อยากรู้'){
+        $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+      }
     }
-   }
-   else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-  
+    else
+      $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+    
   }
   else
    $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
  
-  if( strlen($reply_message) > 0 )
-  {
+ if( strlen($reply_message) > 0 )
+ {
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
    $data = [
     'replyToken' => $reply_token,
     'messages' => [['type' => 'text', 'text' => $reply_message]]
-   ];
-   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+  ];
+  $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
-   $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
-   echo "Result: ".$send_result."\r\n";
-  }
- }
+  $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
+  echo "Result: ".$send_result."\r\n";
+}
+}
 }
 
 echo "OK ".$ad->id." test";
