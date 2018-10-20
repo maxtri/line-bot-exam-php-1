@@ -25,8 +25,21 @@ if ( sizeof($request_array['events']) > 0 )
       $reply_message = 'แสดง B';
       break;
       case 'C':
-      $audioUrl = "https://www.mywebsite.com/simpleaudio.mp3";
-      $reply_message = $audioUrl;
+      $replyData = new TemplateMessageBuilder('Confirm Template',
+        new ConfirmTemplateBuilder(
+          'Confirm template builder',
+          array(
+            new MessageTemplateActionBuilder(
+              'Yes',
+              'Text Yes'
+            ),
+            new MessageTemplateActionBuilder(
+              'No',
+              'Text NO'
+            )
+          )
+        )
+      );
       break;
       default:
       $textReplyMessage = '';
