@@ -21,6 +21,8 @@ if ( sizeof($request_array['events']) > 0 )
   {
    if( $event['message']['type'] == 'text' )
    {
+    $testdb = 'select * from users where id = 1';
+    foreach ($testdb as $ad) {}
     $text = $event['message']['text'];
     if ($text == 'บอกมา'){
       $reply_message = 'ระบบ test ของคุณแล้ว';
@@ -50,7 +52,7 @@ if ( sizeof($request_array['events']) > 0 )
  }
 }
 
-echo "OK";
+echo "OK ".$ad->id." test";
 
 function send_reply_message($url, $post_header, $post_body)
 {
