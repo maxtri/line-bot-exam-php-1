@@ -26,7 +26,7 @@ if ( sizeof($request_array['events']) > 0 )
       break;
       case 'C':
       $audioUrl = "https://www.mywebsite.com/simpleaudio.mp3";
-      $reply_message = new AudioMessageBuilder($audioUrl,27000);
+      $reply_message = $audioUrl;
       break;
       default:
       $textReplyMessage = '';
