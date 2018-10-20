@@ -24,9 +24,6 @@ if ( sizeof($request_array['events']) > 0 )
       case 'B':
         $reply_message = 'แสดง B';
         break;
-      default:
-       $reply_message = json_encode($events);
-            break; 
     }
   if ($text == 'บอกมา'){
     $reply_message = 'ระบบ test ของคุณแล้ว';
