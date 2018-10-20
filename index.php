@@ -17,26 +17,17 @@ if ( sizeof($request_array['events']) > 0 )
    if($event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-    $username = $event['source']['userId'];
-    switch ($text){
-      case 'text':
-      switch ($username) {
-        case "A":
-        $reply_message = "คุณพิมพ์ A";
+    switch ($text) {
+      case 'A':
+        $reply_message = 'แสดง A';
         break;
-        case "B":
-        $reply_message = "คุณพิมพ์ B";
+      case 'B':
+        $reply_message = 'แสดง B';
         break;
-        default:
-        $reply_message = " คุณไม่ได้พิมพ์ A และ B";
-        break;                                      
-      }
-      break;
       default:
-      $reply_message = json_encode($events);
-      break;  
+       $reply_message = json_encode($events);
+            break; 
     }
-  }
   if ($text == 'บอกมา'){
     $reply_message = 'ระบบ test ของคุณแล้ว';
   }else if ($text == 'อยากรู้'){
