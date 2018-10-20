@@ -54,7 +54,7 @@ if ( sizeof($request_array['events']) > 0 )
       $reply_message = 'แสดง B';
       break;
       case 'tm':
-      $$replyData = new TemplateMessageBuilder('Confirm Template',
+      $replyData = new TemplateMessageBuilder('Confirm Template',
         new ConfirmTemplateBuilder(
           'Confirm template builder',
           array(
@@ -71,18 +71,19 @@ if ( sizeof($request_array['events']) > 0 )
       );
       break;
       default:
-      $textReplyMessage = '';
+      $reply_message = '';
       break; 
     }
   }
 }
 
-if(strlen($reply_message) > 0)
+if(strlen($reply_message) > 0 OR strlen($replyData) > 0)
 {
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
  $data = [
   'replyToken' => $reply_token,
-  'messages' => [['type' => 'text', 'text' => $reply_message],['type'=>'text','text'=>$replyData]]
+  'messages' => [['type' => 'text', 'text' => $reply_message]],
+  'messages' => [['type' => 'text', 'text' => $replyData]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
