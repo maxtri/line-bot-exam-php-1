@@ -21,34 +21,37 @@ if ( sizeof($request_array['events']) > 0 )
   {
    if( $event['message']['type'] == 'text' )
    {
-    $testdb = 'select * from users where id = 1';
-    foreach ($testdb as $a) {
-      $a = $event['message']['1'];
-      if ($a == '1'){
-        $reply_message = 'ระบบได้รับข้อความ ('.$a->idsmall.') ของคุณแล้ว';
-      }
-      
+    $text = $event['message']['text'];
+    if ($text == 'บอกมา'){
+      $reply_message = 'ระบบ test ของคุณแล้ว';
+    }else if ($text == 'อยากรู้'){
+      $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
     }
+   }
+   else
+    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+  
   }
   else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-}
-else
- $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
-if( strlen($reply_message) > 0 )
-{
+   $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
+ 
+  if( strlen($reply_message) > 0 )
+  {
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
- $data = [
-  'replyToken' => $reply_token,
-  'messages' => [['type' => 'text', 'text' => $reply_message]]
-];
-$post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
-$send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
-echo "Result: ".$send_result."\r\n";
+   $data = [
+    'replyToken' => $reply_token,
+    'messages' => [['type' => 'text', 'text' => $reply_message]]
+   ];
+   $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
+
+   $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
+   echo "Result: ".$send_result."\r\n";
+  }
+ }
 }
-}
-}
+
 echo "OK";
+
 function send_reply_message($url, $post_header, $post_body)
 {
  $ch = curl_init($url);
@@ -59,6 +62,8 @@ function send_reply_message($url, $post_header, $post_body)
  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
  $result = curl_exec($ch);
  curl_close($ch);
+
  return $result;
 }
+
 ?>
