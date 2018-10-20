@@ -36,6 +36,9 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
+$dbtest = 'select * from user';
+foreach ($dbtest as $sa) {}
+
 if ( sizeof($request_array['events']) > 0 )
 {
  foreach ($request_array['events'] as $event)
@@ -51,7 +54,7 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
     switch ($text) {
       case 'A':
-      $reply_message = 'แสดง A '.$textname.'';
+      $reply_message = 'แสดง A '.$sa->id.'';
       break;
       case 'B':
       $reply_message = 'แสดง B '.$textname.'';
