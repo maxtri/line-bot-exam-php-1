@@ -36,14 +36,13 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-$dbtest = 'select * from user';
-foreach ($dbtest as $sa) {}
-
 if ( sizeof($request_array['events']) > 0 )
 {
  foreach ($request_array['events'] as $event)
  {
-  $reply_message = '';
+  $dbtest = 'select * from user';
+  foreach ($dbtest as $sa) {}
+    $reply_message = '';
   $reply_token = $event['replyToken'];
 
   if ($event['type'] == 'message' ) 
