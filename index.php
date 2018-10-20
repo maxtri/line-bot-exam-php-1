@@ -24,6 +24,10 @@ if ( sizeof($request_array['events']) > 0 )
       case 'B':
       $reply_message = 'แสดง B';
       break;
+      case 'C':
+      $audioUrl = "https://www.mywebsite.com/simpleaudio.mp3";
+      $reply_message = new AudioMessageBuilder($audioUrl,27000);
+      break;
       default:
       $textReplyMessage = '';
       break; 
@@ -31,7 +35,7 @@ if ( sizeof($request_array['events']) > 0 )
   }
 }
 
-if( strlen($reply_message) > 0 )
+if(strlen($reply_message) > 0)
 {
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
  $data = [
