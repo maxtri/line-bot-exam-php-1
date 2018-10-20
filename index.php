@@ -1,4 +1,6 @@
 <?php
+request_one('database.php');
+
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -27,12 +29,16 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuilder;
 
-
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = '80IRGAhKUtOhQDsoZVNiUzBuN1XW6s80sTqwCP25Zfv/gJcLdNFP2Hr4rWkH0bT1KwXWqkW6Ipa/1KyXbb2vH7LQRohMSJ84BdqpKsKk2Xh92bUt6xEXxh7xHO7q/SjGkAlD42/maI/+vsPwqVInawdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
+
+$dbnametest = DB::table('users')->select('*')->where('id','=','1')->get();
+foreach ($dbnametest as $da) {}
+
+echo $da->idsmall;
 
 if ( sizeof($request_array['events']) > 0 )
 {
@@ -45,7 +51,7 @@ if ( sizeof($request_array['events']) > 0 )
   {
    if($event['message']['type'] == 'text' )
    {
-    $textname = $event['source']['userId'];
+    $textname = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
     $text = $event['message']['text'];
     switch ($text) {
       case 'A':
