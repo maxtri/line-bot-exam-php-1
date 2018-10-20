@@ -33,7 +33,7 @@ foreach ($testdb as $ad) {}
     }
     else
       $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-    
+
   }
   else
    $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
@@ -53,7 +53,7 @@ foreach ($testdb as $ad) {}
 }
 }
 
-echo "OK ".$ad->id." test";
+echo "OK ".$ad->idsmall." test";
 
 function send_reply_message($url, $post_header, $post_body)
 {
