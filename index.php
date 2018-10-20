@@ -22,8 +22,10 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $testdb = 'select * from users where id = 1';
+    foreach ($testdb as $a) {
+    }
     $text = $event['message']['text'];
-    $reply_message = 'ระบบได้รับข้อความ ('.$testdb.') ของคุณแล้ว';
+    $reply_message = 'ระบบได้รับข้อความ ('.$a->id.') ของคุณแล้ว';
    }
    else
     $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
