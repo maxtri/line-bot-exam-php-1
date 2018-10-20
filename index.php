@@ -5,49 +5,46 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-$testdb = 'select * from users where id = 1';
-foreach ($testdb as $ad) {}
+if ( sizeof($request_array['events']) > 0 )
+{
+ foreach ($request_array['events'] as $event)
+ {
+  $reply_message = '';
+  $reply_token = $event['replyToken'];
 
-  if ( sizeof($request_array['events']) > 0 )
+  if ($event['type'] == 'message' ) 
   {
-   foreach ($request_array['events'] as $event)
+   if($event['message']['type'] == 'text' )
    {
-    $reply_message = '';
-    $reply_token = $event['replyToken'];
-
-    if ($event['type'] == 'message' ) 
-    {
-     if($event['message']['type'] == 'text' )
-     {
-      $text = $event['message']['text'];
-      $username = $event['source']['userId'];
-      switch ($text){
-        case 'text':
-        switch ($username) {
-          case "A":
-          $reply_message = "คุณพิมพ์ A";
-          break;
-          case "B":
-          $reply_message = "คุณพิมพ์ B";
-          break;
-          default:
-          $reply_message = " คุณไม่ได้พิมพ์ A และ B";
-          break;                                      
-        }
+    $text = $event['message']['text'];
+    $username = $event['source']['userId'];
+    switch ($text){
+      case 'text':
+      switch ($username) {
+        case "A":
+        $reply_message = "คุณพิมพ์ A";
+        break;
+        case "B":
+        $reply_message = "คุณพิมพ์ B";
         break;
         default:
-        $reply_message = json_encode($events);
-        break;  
+        $reply_message = " คุณไม่ได้พิมพ์ A และ B";
+        break;                                      
       }
-    }
-    if ($text == 'บอกมา'){
-      $reply_message = 'ระบบ test ของคุณแล้ว';
-    }else if ($text == 'อยากรู้'){
-      $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+      break;
+      default:
+      $reply_message = json_encode($events);
+      break;  
     }
   }
-  else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+  if ($text == 'บอกมา'){
+    $reply_message = 'ระบบ test ของคุณแล้ว';
+  }else if ($text == 'อยากรู้'){
+    $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+  }
+}
+else
+  $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
 }
 
 if( strlen($reply_message) > 0 )
