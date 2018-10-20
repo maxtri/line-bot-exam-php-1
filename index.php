@@ -23,7 +23,7 @@ if ( sizeof($request_array['events']) > 0 )
    {
     $testdb = 'select * from users where id = 1';
     foreach ($testdb as $a) {
-      $a = $event['message']['text'];
+      $a = $event['message']['1'];
       if ($a == '1'){
         $reply_message = 'ระบบได้รับข้อความ ('.$a->idsmall.') ของคุณแล้ว';
       }
