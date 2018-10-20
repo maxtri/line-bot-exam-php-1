@@ -19,20 +19,17 @@ if ( sizeof($request_array['events']) > 0 )
     $text = $event['message']['text'];
     switch ($text) {
       case 'A':
-        $reply_message = 'แสดง A';
-        break;
+      $reply_message = 'แสดง A';
+      break;
       case 'B':
-        $reply_message = 'แสดง B';
-        break;
+      $reply_message = 'แสดง B';
+      break;
+      $textReplyMessage = '';
+      break; 
     }
-  if ($text == 'บอกมา'){
-    $reply_message = 'ระบบ test ของคุณแล้ว';
-  }else if ($text == 'อยากรู้'){
-    $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
   }
-}
-else
-  $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+  else
+    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
 }
 
 if( strlen($reply_message) > 0 )
