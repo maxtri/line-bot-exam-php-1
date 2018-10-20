@@ -54,7 +54,7 @@ if ( sizeof($request_array['events']) > 0 )
       $reply_message = 'แสดง B';
       break;
       case 'tm':
-      $$replyData = new TemplateMessageBuilder('Confirm Template',
+      $$reply_message = new TemplateMessageBuilder('Confirm Template',
         new ConfirmTemplateBuilder(
           'Confirm template builder',
           array(
@@ -82,7 +82,7 @@ if(strlen($reply_message) > 0)
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
  $data = [
   'replyToken' => $reply_token,
-  'messages' => [['type' => 'text', 'text' => $replyData]]
+  'messages' => [['type' => 'text', 'text' => $reply_message]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
