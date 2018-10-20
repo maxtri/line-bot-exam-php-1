@@ -45,44 +45,28 @@ if ( sizeof($request_array['events']) > 0 )
   {
    if($event['message']['type'] == 'text' )
    {
+    $textname = $event['source']['userId'];
     $text = $event['message']['text'];
     switch ($text) {
       case 'A':
-      $reply_message = 'แสดง A';
+      $reply_message = 'แสดง A '.$textname.'';
       break;
       case 'B':
-      $reply_message = 'แสดง B';
-      break;
-      case 'tm':
-      $replyData = new TemplateMessageBuilder('Confirm Template',
-        new ConfirmTemplateBuilder(
-          'Confirm template builder',
-          array(
-            new MessageTemplateActionBuilder(
-              'Yes',
-              'Text Yes'
-            ),
-            new MessageTemplateActionBuilder(
-              'No',
-              'Text NO'
-            )
-          )
-        )
-      );
+      $reply_message = 'แสดง B '.$textname.'';
       break;
       default:
-      $reply_message = '';
+      $reply_message = ''.$textname.'';
       break; 
     }
   }
 }
 
-if(strlen($reply_message) > 0 OR strlen($replyData) > 0)
+if(strlen($reply_message) > 0)
 {
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
  $data = [
   'replyToken' => $reply_token,
-  'messages' => [['type' => 'text', 'text' => $reply_message,'text'=>$replyData]]
+  'messages' => [['type' => 'text', 'text' => $reply_message]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
