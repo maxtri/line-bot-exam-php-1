@@ -1,6 +1,4 @@
 <?php
-request_one('database.php');
-
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -37,8 +35,6 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 
 $dbnametest = DB::table('users')->select('*')->where('id','=','1')->get();
 foreach ($dbnametest as $da) {}
-
-echo $da->idsmall;
 
 if ( sizeof($request_array['events']) > 0 )
 {
