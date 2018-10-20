@@ -23,8 +23,8 @@ if ( sizeof($request_array['events']) > 0 )
    {
     $testdb = 'select * from users where id = 1';
     foreach ($testdb as $a) {
-      $text = $event['message']['text'];
-      $reply_message = 'ระบบได้รับข้อความ ('.$a->id.') ของคุณแล้ว';
+      $a = $event['message']['text'];
+      $reply_message = 'ระบบได้รับข้อความ ('.$a.') ของคุณแล้ว';
     }
   }
   else
@@ -37,7 +37,7 @@ if( strlen($reply_message) > 0 )
    //$reply_message = iconv("tis-620","utf-8",$reply_message);
  $data = [
   'replyToken' => $reply_token,
-  'messages' => [['type' => 'text', ''.$a->id.'' => $reply_message]]
+  'messages' => [['type' => 'text', 'text' => $reply_message]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 $send_result = send_reply_message($API_URL, $POST_HEADER, $post_body);
