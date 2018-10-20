@@ -25,7 +25,7 @@ if ( sizeof($request_array['events']) > 0 )
       $reply_message = 'แสดง B';
       break;
       case 'C':
-      $replyData = new TemplateMessageBuilder('Confirm Template',
+      $reply_message = new TemplateMessageBuilder('Confirm Template',
         new ConfirmTemplateBuilder(
           'Confirm template builder',
           array(
