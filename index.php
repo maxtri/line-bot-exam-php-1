@@ -24,12 +24,11 @@ if ( sizeof($request_array['events']) > 0 )
       case 'B':
       $reply_message = 'แสดง B';
       break;
+      default:
       $textReplyMessage = '';
       break; 
     }
   }
-  else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
 }
 
 if( strlen($reply_message) > 0 )
