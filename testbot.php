@@ -11,8 +11,9 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
     $arrayHeader[] = "Authorization: Bearer {$accessToken}";
     
     //รับข้อความจากผู้ใช้
+    foreach ($arrayJson['events'] as $event) {}
     $message = $arrayJson['events'][0]['message']['text'];
-    $textname = $message['source']['userId'];
+    $textname = $event['source']['userId'];
     #ตัวอย่าง Message Type "Text"
     if($message == "สวัสดี"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
