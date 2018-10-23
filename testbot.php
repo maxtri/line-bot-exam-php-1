@@ -68,10 +68,10 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $image = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "buttons";
-        $arrayPostData['messages'][1]['thumbnailImageUrl'] = $image;
-        $arrayPostData['messages'][1]['imageAspectRatio'] = 'rectangle';
-        $arrayPostData['messages'][1]['imageBackgroundColor'] = $image;
-        $arrayPostData['messages'][1]['text'] = 'ลงทะเบียน';
+        $arrayPostData['messages'][0]['thumbnailImageUrl'] = $image;
+        $arrayPostData['messages'][0]['imageAspectRatio'] = 'rectangle';
+        $arrayPostData['messages'][0]['imageBackgroundColor'] = $image;
+        $arrayPostData['messages'][0]['text'] = 'ลงทะเบียน';
         replyMsg($arrayHeader,$arrayPostData);
         break;
         default:
