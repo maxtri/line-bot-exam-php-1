@@ -1,5 +1,6 @@
 <?php
-$API_URL = 'https://api.line.me/v2/bot/message/reply';
+
+    $API_URL = 'https://api.line.me/v2/bot/message/reply';
 
     $accessToken = "80IRGAhKUtOhQDsoZVNiUzBuN1XW6s80sTqwCP25Zfv/gJcLdNFP2Hr4rWkH0bT1KwXWqkW6Ipa/1KyXbb2vH7LQRohMSJ84BdqpKsKk2Xh92bUt6xEXxh7xHO7q/SjGkAlD42/maI/+vsPwqVInawdB04t89/1O/w1cDnyilFU=";//copy Channel access token ตอนที่ตั้งค่ามาใส่
     
@@ -57,6 +58,9 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $arrayPostData['messages'][1]['packageId'] = "1";
         $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
+    }
+    else if($message == ""){
+        echo "กรูณาใส่ตัวเลือกใหม่ด้วย";
     }
 
     echo "OK Test Success.";
