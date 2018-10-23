@@ -27,24 +27,12 @@ if (sizeof($request_array['events']) > 0 )
       case 'B':
       $reply_message = 'แสดง B '.$textname.'';
       break;
+      case 'C':
+      $reply_message = 'แสดง C';
+      break;
       default:
       $reply_message = ''.$textname.'';
       break; 
-    }
-  }
-}else if ($event['type'] == 'image'){
-  if ($event['image']['type'] == 'image'){
-    $textname1 = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
-    $text = $event['message']['text'];
-    switch ($text) {
-      case 'C':
-        $reply = '
-        test
-        ';
-        break;
-      default:
-        $reply = 'ไม่มีข้อมูลที่ต้องการค้นหา';
-        break;
     }
   }
 }
@@ -57,7 +45,6 @@ if(strlen($reply_message) > 0)
  $data = [
   'replyToken' => $reply_token,
   'messages' => [['type' => 'text', 'text' => $reply_message]]
-  'image' => [['type' => 'image', 'image' => $reply]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
