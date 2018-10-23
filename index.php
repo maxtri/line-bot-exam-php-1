@@ -6,20 +6,12 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-$content = file_get_contents('php://input');
-$arrayJson = json_decode($content, true);
-
-$arrayHeader = array();
-$arrayHeader[] = "Content-Type: application/json";
-$arrayHeader[] = "Authorization: Bearer {$accessToken}";
-
 if (sizeof($request_array['events']) > 0 )
 {
  foreach ($request_array['events'] as $event)
  {
   $reply_message = '';
   $reply_token = $event['replyToken'];
-  $reply_image = '';
 
   if ($event['type'] == 'message' ) 
   {
@@ -39,17 +31,24 @@ if (sizeof($request_array['events']) > 0 )
       break; 
     }
   }
-}else if($text){
-  if ($event['message']['type'] == 'image'){
-    $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
-    $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-    $arrayPostData['messages'][0]['type'] = "image";
-    $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
-    $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
-    $test2 = replyMsg($arrayHeader,$arrayPostData);
-    $reply_image = 'รูป '.$test2.'';
-  } 
+}else if ($event['type'] == 'imagesa'){
+  if ($event['imagesa']['type'] == 'image'){
+    $textname1 = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
+    $text2 = $event['image']['image'];
+    switch ($text2) {
+      case 'C':
+        $reply_message = '
+        test
+        ';
+        break;
+      default:
+        $reply_message = 'ไม่มีข้อมูลที่ต้องการค้นหา';
+        break;
+    }
+  }
 }
+
+
 
 if(strlen($reply_message) > 0)
 {
@@ -57,7 +56,6 @@ if(strlen($reply_message) > 0)
  $data = [
   'replyToken' => $reply_token,
   'messages' => [['type' => 'text', 'text' => $reply_message]]
-  'messages' => [['type' => 'image', 'image' => $reply_image]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
