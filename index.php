@@ -9,6 +9,7 @@ $request_array = json_decode($request, true);   // Decode JSON to Array
 $arrayHeader = array();
 $arrayHeader[] = "Content-Type: application/json";
 $arrayHeader[] = "Authorization: Bearer {$ACCESS_TOKEN}"
+$message = $request_array['events'][0]['message']['text'];
 
 if (sizeof($request_array['events']) > 0 )
 {
@@ -22,8 +23,8 @@ if (sizeof($request_array['events']) > 0 )
    if($event['message']['type'] == 'text' )
    {
     $textname = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
-    $text = $event['message']['text'];
-    switch ($text) {
+    //$text = $event['message']['text'];
+    switch ($message) {
       case 'A':
       $reply_message = 'แสดง A '.$textname.'';
       break;
@@ -33,9 +34,9 @@ if (sizeof($request_array['events']) > 0 )
       case 'C':
       $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
       $arrayPostData['replyToken'] = $request_array['events'][0]['replyToken'];
-      $arrayPostData['message'][0]['type'] = "image";
-      $arrayPostData['message'][0]['originalContentUrl'] = $image_url;
-      $arrayPostData['message'][0]['previewImageUrl'] = $image_url;
+      $arrayPostData['messages'][0]['type'] = "image";
+      $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+      $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
       replyMsg($arrayHeader,$arrayPostData);
       break;
       default:
