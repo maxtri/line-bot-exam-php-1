@@ -68,7 +68,6 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "buttons";
         $arrayPostData['messages'][0]['title'] = 'ลงทะเบียน';
-        $arrayPostData['messages'][0]['text'] = "Register";
         replyMsg($arrayHeader,$arrayPostData);
         break;
         default:
