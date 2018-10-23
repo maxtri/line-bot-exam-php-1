@@ -13,14 +13,14 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
     
     //รับข้อความจากผู้ใช้
     foreach ($arrayJson['events'] as $event) {}
-    $message = $arrayJson['events'][0]['message']['text'];
-    $textname = $event['source']['userId'];
+        $message = $arrayJson['events'][0]['message']['text'];
+    $UserID = $event['source']['userId'];
 
     switch ($message) {
         case 'สวัสดี':
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา ".$textname."";
+        $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา ".$UserID."";
         replyMsg($arrayHeader,$arrayPostData);
         break;
         case 'ฝันดี':
@@ -54,6 +54,13 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $arrayPostData['messages'][1]['type'] = "sticker";
         $arrayPostData['messages'][1]['packageId'] = "1";
         $arrayPostData['messages'][1]['stickerId'] = "131";
+        replyMsg($arrayHeader,$arrayPostData);
+        break;
+        case 'video':
+        $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+        $arrayPostData['messages'][0]['type'] = "video";
+        $arrayPostData['messages'][0]['originalContentUrl'] = "https://www.youtube.com/watch?v=Oh5gHDa3WvA";//ใส่ url ของ video ที่ต้องการส่ง
+        $arrayPostData['messages'][0]['previewImageUrl'] = "";//ใส่รูป preview ของ video
         replyMsg($arrayHeader,$arrayPostData);
         break;
         default:
