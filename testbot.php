@@ -1,5 +1,5 @@
 <?php
-    $API_URL = 'https://api.line.me/v2/bot/message/reply';
+$API_URL = 'https://api.line.me/v2/bot/message/reply';
 
     $accessToken = "80IRGAhKUtOhQDsoZVNiUzBuN1XW6s80sTqwCP25Zfv/gJcLdNFP2Hr4rWkH0bT1KwXWqkW6Ipa/1KyXbb2vH7LQRohMSJ84BdqpKsKk2Xh92bUt6xEXxh7xHO7q/SjGkAlD42/maI/+vsPwqVInawdB04t89/1O/w1cDnyilFU=";//copy Channel access token ตอนที่ตั้งค่ามาใส่
     
@@ -56,7 +56,10 @@
         $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
     }
-function replyMsg($arrayHeader,$arrayPostData){
+
+    echo "OK Test Success.";
+
+    function replyMsg($arrayHeader,$arrayPostData){
         $strUrl = "https://api.line.me/v2/bot/message/reply";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$strUrl);
@@ -69,5 +72,5 @@ function replyMsg($arrayHeader,$arrayPostData){
         $result = curl_exec($ch);
         curl_close ($ch);
     }
-   exit;
-?>
+    exit;
+    ?>
