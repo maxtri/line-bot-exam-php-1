@@ -33,20 +33,19 @@ if (sizeof($request_array['events']) > 0 )
       case 'B':
       $reply_message = 'แสดง B '.$textname.'';
       break;
+      case 'รูปน้องแมว':
+      $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
+      $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+      $arrayPostData['messages'][0]['type'] = "image";
+      $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+      $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+      replyMsg($arrayHeader,$arrayPostData);
+      break;
       default:
       $reply_message = ''.$textname.'';
       break; 
     }
   }
-}
-#ตัวอย่าง Message Type "Image"
-else if($message == "รูปน้องแมว"){
-  $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
-  $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-  $arrayPostData['messages'][0]['type'] = "image";
-  $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
-  $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
-  replyMsg($arrayHeader,$arrayPostData);
 }
 
 if(strlen($reply_message) > 0)
