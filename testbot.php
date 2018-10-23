@@ -27,7 +27,7 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "sticker";
         $arrayPostData['messages'][0]['packageId'] = "2";
-        $arrayPostData['messages'][0]['stickerId'] = "50";
+        $arrayPostData['messages'][0]['stickerId'] = "46";
         replyMsg($arrayHeader,$arrayPostData);
         break;
         case 'รูปน้องแมว':
