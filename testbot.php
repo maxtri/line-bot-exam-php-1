@@ -59,7 +59,7 @@
         $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
     }
-    else if($message == ""){
+    else if($message){
         echo "กรูณาใส่ตัวเลือกใหม่ด้วย";
     }
 
