@@ -6,7 +6,9 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
-if ( sizeof($request_array['events']) > 0 )
+
+
+if (sizeof($request_array['events']) > 0 )
 {
  foreach ($request_array['events'] as $event)
  {
@@ -29,6 +31,34 @@ if ( sizeof($request_array['events']) > 0 )
       default:
       $reply_message = ''.$textname.'';
       break; 
+    }
+  }
+}else{
+  {
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+      "title": "Menu",
+      "text": "Please select",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "Buy",
+          "data": "action=buy&itemid=123"
+        },
+        {
+          "type": "postback",
+          "label": "Add to cart",
+          "data": "action=add&itemid=123"
+        },
+        {
+          "type": "uri",
+          "label": "View detail",
+          "uri": "http://example.com/page/123"
+        }
+      ]
     }
   }
 }
