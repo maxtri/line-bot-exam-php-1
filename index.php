@@ -6,7 +6,12 @@ $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' 
 $request = file_get_contents('php://input');   // Get request content
 $request_array = json_decode($request, true);   // Decode JSON to Array
 
+$content = file_get_contents('php://input');
+$arrayJson = json_decode($content, true);
 
+$arrayHeader = array();
+$arrayHeader[] = "Content-Type: application/json";
+$arrayHeader[] = "Authorization: Bearer {$accessToken}";
 
 if (sizeof($request_array['events']) > 0 )
 {
@@ -33,34 +38,15 @@ if (sizeof($request_array['events']) > 0 )
       break; 
     }
   }
-}else{
-  {
-    "type": "template",
-    "altText": "this is a buttons template",
-    "template": {
-      "type": "buttons",
-      "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
-      "title": "Menu",
-      "text": "Please select",
-      "actions": [
-        {
-          "type": "postback",
-          "label": "Buy",
-          "data": "action=buy&itemid=123"
-        },
-        {
-          "type": "postback",
-          "label": "Add to cart",
-          "data": "action=add&itemid=123"
-        },
-        {
-          "type": "uri",
-          "label": "View detail",
-          "uri": "http://example.com/page/123"
-        }
-      ]
-    }
-  }
+}
+#ตัวอย่าง Message Type "Image"
+else if($message == "รูปน้องแมว"){
+  $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
+  $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
+  $arrayPostData['messages'][0]['type'] = "image";
+  $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
+  $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
+  replyMsg($arrayHeader,$arrayPostData);
 }
 
 if(strlen($reply_message) > 0)
