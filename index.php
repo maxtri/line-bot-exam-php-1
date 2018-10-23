@@ -19,7 +19,7 @@ if (sizeof($request_array['events']) > 0 )
    {
     $textname = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
     $text = $event['message']['text'];
-    $image = 'img/add.png';
+    $image = 'https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg';
     switch ($text) {
       case 'A':
       $reply_message = 'แสดง A '.$textname.'';
