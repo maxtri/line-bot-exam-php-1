@@ -19,6 +19,7 @@ if (sizeof($request_array['events']) > 0 )
  {
   $reply_message = '';
   $reply_token = $event['replyToken'];
+  $reply_image = '';
 
   if ($event['type'] == 'message' ) 
   {
@@ -38,9 +39,7 @@ if (sizeof($request_array['events']) > 0 )
       break; 
     }
   }
-}
-#ตัวอย่าง Message Type "Image"
-else if($text){
+}else if($text){
   if ($event['message']['type'] == 'image'){
     $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
     $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
@@ -48,7 +47,7 @@ else if($text){
     $arrayPostData['messages'][0]['originalContentUrl'] = $image_url;
     $arrayPostData['messages'][0]['previewImageUrl'] = $image_url;
     $test2 = replyMsg($arrayHeader,$arrayPostData);
-    $reply_message = 'รูป '.$test2.'';
+    $reply_image = 'รูป '.$test2.'';
   } 
 }
 
@@ -58,6 +57,7 @@ if(strlen($reply_message) > 0)
  $data = [
   'replyToken' => $reply_token,
   'messages' => [['type' => 'text', 'text' => $reply_message]]
+  'messages' => [['type' => 'image', 'image' => $reply_image]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
