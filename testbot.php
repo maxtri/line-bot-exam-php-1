@@ -51,16 +51,16 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
         $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
-        $arrayPostData['messages'][0]['type'] = "sticker";
-        $arrayPostData['messages'][0]['packageId'] = "1";
-        $arrayPostData['messages'][0]['stickerId'] = "131";
+        $arrayPostData['messages'][1]['type'] = "sticker";
+        $arrayPostData['messages'][1]['packageId'] = "1";
+        $arrayPostData['messages'][1]['stickerId'] = "131";
         replyMsg($arrayHeader,$arrayPostData);
         break;
         case 'วีดีโอ':
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "video";
         $arrayPostData['messages'][0]['originalContentUrl'] = "https://www.youtube.com/watch?v=Oh5gHDa3WvA";//ใส่ url ของ video ที่ต้องการส่ง
-        //$arrayPostData['messages'][0]['previewImageUrl'] = "";//ใส่รูป preview ของ video
+        $arrayPostData['messages'][0]['previewImageUrl'] = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";//ใส่รูป preview ของ video
         replyMsg($arrayHeader,$arrayPostData);
         break;
         default:
