@@ -31,8 +31,8 @@ if (sizeof($request_array['events']) > 0 )
       break; 
     }
   }
-}else if ($event['type'] == 'imagesa'){
-  if ($event['imagesa']['type'] == 'image'){
+}else if ($event['type'] == 'image'){
+  if ($event['image']['type'] == 'image'){
     $textname1 = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
     $text2 = $event['image']['image'];
     switch ($text2) {
