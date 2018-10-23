@@ -11,6 +11,7 @@ if (sizeof($request_array['events']) > 0 )
  foreach ($request_array['events'] as $event)
  {
   $reply_message = '';
+  $reply = '';
   $reply_token = $event['replyToken'];
 
   if ($event['type'] == 'message' ) 
@@ -34,15 +35,15 @@ if (sizeof($request_array['events']) > 0 )
 }else if ($event['type'] == 'image'){
   if ($event['image']['type'] == 'image'){
     $textname1 = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
-    $text2 = $event['image']['image'];
-    switch ($text2) {
+    $text = $event['message']['text'];
+    switch ($text) {
       case 'C':
-        $reply_message = '
+        $reply = '
         test
         ';
         break;
       default:
-        $reply_message = 'ไม่มีข้อมูลที่ต้องการค้นหา';
+        $reply = 'ไม่มีข้อมูลที่ต้องการค้นหา';
         break;
     }
   }
@@ -56,6 +57,7 @@ if(strlen($reply_message) > 0)
  $data = [
   'replyToken' => $reply_token,
   'messages' => [['type' => 'text', 'text' => $reply_message]]
+  'image' => [['type' => 'image', 'image' => $reply]]
 ];
 $post_body = json_encode($data, JSON_UNESCAPED_UNICODE);
 
