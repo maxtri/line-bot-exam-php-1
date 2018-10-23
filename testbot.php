@@ -57,19 +57,18 @@ $API_URL = 'https://api.line.me/v2/bot/message/reply';
         replyMsg($arrayHeader,$arrayPostData);
         break;
         case 'วีดีโอ':
+        $image = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "video";
         $arrayPostData['messages'][0]['originalContentUrl'] = "https://www.youtube.com/watch?v=Oh5gHDa3WvA";//ใส่ url ของ video ที่ต้องการส่ง
-        $arrayPostData['messages'][0]['previewImageUrl'] = "";//ใส่รูป preview ของ video
+        $arrayPostData['messages'][0]['previewImageUrl'] = $image;//ใส่รูป preview ของ video
         replyMsg($arrayHeader,$arrayPostData);
         break;
         case 'ลงทะเบียน':
-        $image = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "buttons";
         $arrayPostData['messages'][0]['title'] = 'ลงทะเบียน';
         $arrayPostData['messages'][0]['text'] = "Register";
-        $arrayPostData['messages'][0]['thumbnailImageUrl'] = $image;
         replyMsg($arrayHeader,$arrayPostData);
         break;
         default:
