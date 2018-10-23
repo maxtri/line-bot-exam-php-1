@@ -19,6 +19,7 @@ if (sizeof($request_array['events']) > 0 )
    {
     $textname = $event['source']['userId']; // เอา user id ของแต่ละคนที่ทักมาหาบอทตัวนี้เก็บไว้
     $text = $event['message']['text'];
+    $image = 'img/add.png';
     switch ($text) {
       case 'A':
       $reply_message = 'แสดง A '.$textname.'';
@@ -27,7 +28,7 @@ if (sizeof($request_array['events']) > 0 )
       $reply_message = 'แสดง B '.$textname.'';
       break;
       case 'C':
-      $reply_message = 'แสดง C';
+      $reply_message = 'แสดง C '.$image.'';
       break;
       default:
       $reply_message = ''.$textname.'';
@@ -35,8 +36,6 @@ if (sizeof($request_array['events']) > 0 )
     }
   }
 }
-
-
 
 if(strlen($reply_message) > 0)
 {
